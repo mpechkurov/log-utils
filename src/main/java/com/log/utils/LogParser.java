@@ -19,10 +19,19 @@ public class LogParser {
         Set<ServiceData> serviceData = new HashSet<>();
 
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-            stream.forEach(line -> serviceData.add(new ServiceData(logStringUtils.getServiceName(line))));
+            stream.forEach(line -> {
+                               String serviceName = logStringUtils.getServiceName(line);
+                               boolean isEntry = logStringUtils.isEntryRequest(line);
+                               serviceData.add(new ServiceData(serviceName));
+                               if (isEntry){
+                                   serviceData.stream().filter(o->o.getName().equals(serviceName)).findFirst().ifPresent(ServiceData::updateRequestAmount);
+                               }
+
+                           }
+                          );
         } catch (IOException e) {
             e.printStackTrace();
         }
-        serviceData.forEach(serviceData1 -> System.out.println(serviceData1.getName()));
+        serviceData.forEach(System.out::println);
     }
 }

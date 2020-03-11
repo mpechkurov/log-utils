@@ -4,7 +4,15 @@ import java.util.Objects;
 
 public class ServiceData {
     private String name;
-    private String requestAmount;
+    private long requestAmount = 0;
+
+    @Override
+    public String toString() {
+        return "ServiceData{" +
+               "name='" + name + '\'' +
+               ", requestAmount=" + requestAmount +
+               '}';
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -13,8 +21,7 @@ public class ServiceData {
         if (o == null || getClass() != o.getClass())
             return false;
         ServiceData that = (ServiceData) o;
-        return name.equals(that.name) &&
-               Objects.equals(requestAmount, that.requestAmount);
+        return name.equals(that.name);
     }
 
     @Override
@@ -34,11 +41,15 @@ public class ServiceData {
         this.name = name;
     }
 
-    public String getRequestAmount() {
+    public long getRequestAmount() {
         return requestAmount;
     }
 
-    public void setRequestAmount(String requestAmount) {
+    public void setRequestAmount(long requestAmount) {
         this.requestAmount = requestAmount;
+    }
+
+    public void updateRequestAmount() {
+        this.requestAmount += 1;
     }
 }
