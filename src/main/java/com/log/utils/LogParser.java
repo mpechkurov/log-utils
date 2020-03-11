@@ -12,18 +12,17 @@ import java.util.stream.Stream;
 //    3. Max time of request execution
 
 public class LogParser {
+
     public static void main(String[] args) {
         LogStringUtils logStringUtils = new LogStringUtils();
         String fileName = "src/main/resources/test.log";
-        Set<String> services = new HashSet<>();
+        Set<ServiceData> serviceData = new HashSet<>();
 
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-            stream.forEach(line -> services.add(logStringUtils.getServiceName(line)));
+            stream.forEach(line -> serviceData.add(new ServiceData(logStringUtils.getServiceName(line))));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println(services);
-
+        serviceData.forEach(serviceData1 -> System.out.println(serviceData1.getName()));
     }
 }
