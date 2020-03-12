@@ -5,12 +5,14 @@ import java.util.Objects;
 public class ServiceData {
     private String name;
     private long requestAmount = 0;
+    private long longestRequestTimeInSeconds;
 
     @Override
     public String toString() {
         return "ServiceData{" +
                "name='" + name + '\'' +
                ", requestAmount=" + requestAmount +
+               ", longestRequestTimeInSeconds=" + longestRequestTimeInSeconds +
                '}';
     }
 
@@ -47,6 +49,14 @@ public class ServiceData {
 
     public void setRequestAmount(long requestAmount) {
         this.requestAmount = requestAmount;
+    }
+
+    public long getLongestRequestTimeInSeconds() {
+        return longestRequestTimeInSeconds;
+    }
+
+    public void setLongestRequestTimeInSeconds(long longestRequestTimeInSeconds) {
+        this.longestRequestTimeInSeconds = longestRequestTimeInSeconds;
     }
 
     public void updateRequestAmount() {
