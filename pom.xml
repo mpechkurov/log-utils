@@ -29,5 +29,9 @@
         </dependency>
     </dependencies>
 
+    <properties>
+        <exec.mainClass>com.log.utils.LogParserDemo</exec.mainClass>
+    </properties>
+
 
 </project>
